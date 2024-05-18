@@ -1168,7 +1168,9 @@ const sendMessageByServerChan = async (user, templateId, wxTemplateData) => {
  */
 const sendMessageByWeChatTest = async (user, templateId, wxTemplateData) => {
   let accessToken = null
-
+  console.log('用户',user)
+  console.log('模板id',templateId)
+  console.log('数据模板',wxTemplateData)
   if (RUN_TIME_STORAGE.accessToken) {
     console.log('获取了相同的数据，读取缓存 >>> accessToken')
     accessToken = RUN_TIME_STORAGE.accessToken
@@ -1243,7 +1245,7 @@ export const sendMessage = async (templateId, user, params, usePassage) => {
       }
     })
   }
-
+  console.log('推送平台',usePassage)
   if (usePassage === 'push-deer') {
     console.log('使用push-deer推送')
     return sendMessageByPushDeer(user, templateId, wxTemplateData)
@@ -1254,7 +1256,7 @@ export const sendMessage = async (templateId, user, params, usePassage) => {
     console.log('使用push-plus推送')
     return sendMessageByPushPlus(user, templateId, wxTemplateData)
   }
-
+  
   console.log('使用微信测试号推送')
   return sendMessageByWeChatTest(user, templateId, wxTemplateData)
 }
